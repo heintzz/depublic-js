@@ -1,0 +1,84 @@
+.swiper-button-prev,
+.swiper-button-next {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: white;
+  display: grid;
+  place-items: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.event.swiper-button-next,
+.event.swiper-button-prev,
+.blog.swiper-button-next,
+.blog.swiper-button-prev {
+  width: 24px;
+  height: 24px;
+}
+
+.home.swiper-button-next {
+  position: absolute;
+  z-index: 2;
+  right: 8px;
+  transform: translateY(-50%);
+  top: 50%;
+  cursor: pointer;
+}
+
+.home.swiper-button-prev {
+  position: absolute;
+  z-index: 2;
+  left: 8px;
+  transform: translateY(-50%);
+  top: 50%;
+  cursor: pointer;
+}
+
+.event.swiper-button-next {
+  position: absolute;
+  top: 50%;
+  left: -40px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.event.swiper-button-prev {
+  position: absolute;
+  top: 0;
+  top: 50%;
+  left: -70px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.blog.swiper-button-next {
+  position: absolute;
+  top: 50%;
+  left: -40px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.blog.swiper-button-prev {
+  position: absolute;
+  top: 0;
+  top: 50%;
+  left: -70px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.adjust-gap:nth-of-type(n + 2) {
+  margin-right: -28px;
+}
+
+.swiper-pagination-bullet {
+  width: 10px !important;
+  border-radius: 50px !important;
+}
+
+.swiper .swiper-pagination-bullet-active {
+  background-color: black;
+  width: 37px !important;
+}
