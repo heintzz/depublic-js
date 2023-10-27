@@ -8,4 +8,5 @@ const App = () => {
     </SmoothScroll>
   );
 };
+
 export default App;

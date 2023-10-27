@@ -10,7 +10,10 @@ import { ISOToDateString } from "utils/helper";
 import Search from "assets/icons/search.svg";
 import Maher from "assets/images/maher-zain.png";
 import NavigateButton from "components/NavigateButton";
+import { useEffect } from "react";
+import { eventServices } from "services/event.services";
 import { tokenServices } from "services/token.services";
+import { NumberToCurrencyFormat } from "../../utils/helper";
 
 export default function DetailEventPage() {
   const isLogin = tokenServices.getAccessToken();
@@ -19,12 +22,34 @@ export default function DetailEventPage() {
   const paths = path.pathname.split("/");
   paths.splice(0, 1);
 
+  const id = paths[paths.length - 1];
+  const [event, setEvent] = useState({});
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      try {
+        const res = await eventServices.getEventDetail(id);
+        setEvent(res.data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [id]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <MainLayout>
       <div className="px-7 pt-8">
         <div className="mb-10">
           <Breadcrumbs elements={paths} type="event" />
-          <img src={Maher} alt="maher cover" className="mt-7" />
+          <img src={event?.image} alt="maher cover" className="mt-7 rounded-lg" />
         </div>
         <div className="flex gap-x-2 justify-between text-xs overflow-x-auto">
           {["Summary", "Highlighted", "Package", "Location", "Order"].map((item, index) => {
@@ -48,12 +73,12 @@ export default function DetailEventPage() {
       <div className="px-7 text-xs">
         <div className="flex items-center gap-x-2 mt-4 mb-3">
           <div className="flex gap-x-1 items-center">
-            <SlLocationPin /> BANDUNG
+            <SlLocationPin /> {event?.location}
           </div>
           <span>| </span>
-          <span className="text-primary-500">{ISOToDateString("2023-10-21T10:13:08.115Z")}</span>
+          <span className="text-primary-500">{ISOToDateString(event?.event_date)}</span>
         </div>
-        <h2 className="text-xl font-bold">Konser Silaturahmi Maher Zain</h2>
+        <h2 className="text-xl font-bold">{event?.title}</h2>
         <div className="relative mt-2">
           {isLogin ? null : (
             <div className="absolute h-full w-[110%] translate-x-[50%] bg-transparent top-0 right-[50%] backdrop-blur-[4px] grid place-content-center">
@@ -77,14 +102,12 @@ export default function DetailEventPage() {
             </div>
           )}
           <div className="flex flex-col-reverse gap-y-3 m-sm:flex-row m-sm:gap-x-5 items-start text-neutral-500">
-            <div className="text-justify">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, repudiandae! Quam,
-              dolorem mollitia, quae illo dolores porro quasi doloremque quibusdam vero cupiditate
-              voluptatibus sint facilis corporis modi aliquid laudantium fuga.
-            </div>
+            <div className="text-justify">{event.description}</div>
             <div className="flex flex-col justify-end gap-y-1 m-sm:min-w-[140px]">
               <span>Starting From</span>
-              <span className="text-primary-500 font-bold text-lg">IDR 1.999.000</span>
+              <span className="text-primary-500 font-bold text-lg">
+                {NumberToCurrencyFormat(event.price)}
+              </span>
             </div>
           </div>
           <h3 className="text-lg font-bold mt-8 mb-4">Highlight</h3>
