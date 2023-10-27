@@ -8,7 +8,6 @@ import { SlLocationPin } from "react-icons/sl";
 import { ISOToDateString } from "utils/helper";
 
 import Search from "assets/icons/search.svg";
-import Maher from "assets/images/maher-zain.png";
 import NavigateButton from "components/NavigateButton";
 import { useEffect } from "react";
 import { eventServices } from "services/event.services";
