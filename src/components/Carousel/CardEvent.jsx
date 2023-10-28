@@ -33,7 +33,7 @@ export default function CardEvent({ screenSize = "medium", data }) {
     );
 
   return (
-    <div className="flex flex-col col-span-1 p-2 shadow-sm max-h-[330px] rounded-xl bg-white">
+    <div className="flex flex-col col-span-1 p-2 shadow-sm rounded-xl bg-white">
       <img
         className="h-[150px] m-sm:h-[100px] m-md:h-[120px] w-full bg-cover rounded-xl object-fill"
         src={data?.image || Maher}
