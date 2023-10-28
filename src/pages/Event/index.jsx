@@ -198,16 +198,16 @@ export default function EventPage() {
           <p className="mt-5">loading...</p>
         ) : (
           <>
-            {/* <p className="text-xs my-6 text-neutral-500">{totalItems} events on result</p>
+            <p className="text-xs my-6 text-neutral-500">{totalItems} events on result</p>
             <div className="grid gap-x-2 gap-y-6 grid-cols-1 m-sm:grid-cols-2">
-              {events.map((data, index) => {
+              {events?.map((data, index) => {
                 return (
-                  <Link key={index} to={`/ticket/${data.id}`}>
+                  <Link key={index} to={`/ticket/${data?.id}`}>
                     <CardEvent screenSize="small" data={data} />
                   </Link>
                 );
               })}
-            </div> */}
+            </div>
           </>
         )}
       </div>
