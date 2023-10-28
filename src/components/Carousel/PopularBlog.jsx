@@ -7,7 +7,6 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import "./Carousel.css";
 
-
 import CardBlog from "./CardBlog";
 
 export default function PopularBlog() {

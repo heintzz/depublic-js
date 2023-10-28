@@ -2,12 +2,10 @@ import Breadcrumbs from "components/Breadcrumbs";
 import MainLayout from "components/MainLayout";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { FiUpload } from "react-icons/fi";
-import { useLocation } from "react-router-dom";
+import usePaths from "../../hooks/usePaths";
 
 export const RegistrationFormPage = () => {
-  const path = useLocation();
-  const paths = path.pathname.split("/");
-  paths.splice(0, 1);
+  const paths = usePaths();
 
   return (
     <MainLayout>

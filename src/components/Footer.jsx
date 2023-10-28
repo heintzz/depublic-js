@@ -2,7 +2,7 @@ import DepublicBrand from "assets/icons/depublic-brand.svg";
 
 export default function Footer() {
   return (
-    <div className="px-7 py-12 text-white bg-primary-900 text-xs mt-10">
+    <div className="px-7 py-12 text-white bg-primary-900 text-xs mt-auto">
       <div className="flex justify-between gap-x-5">
         <div className="flex flex-col w-[50%]">
           <img src={DepublicBrand} width={160} />
