@@ -1,4 +1,6 @@
 import Breadcrumbs from "components/Breadcrumbs";
+import CardEvent from "components/Carousel/CardEvent";
+import Footer from "components/Footer";
 import MainLayout from "components/MainLayout";
 import SearchBar from "components/SearchBar";
 import { useEffect, useMemo, useState } from "react";
@@ -9,8 +11,6 @@ import { PiTag } from "react-icons/pi";
 import { SlLocationPin } from "react-icons/sl";
 import { Link } from "react-router-dom";
 
-import CardEvent from "components/Carousel/CardEvent";
-import Footer from "components/Footer";
 import { eventServices } from "services/event.services";
 
 import usePaths from "../../hooks/usePaths";
@@ -156,8 +156,6 @@ export default function EventPage() {
         setEvents(res.data);
       } catch (error) {
         console.error(error);
-        setEvents(dummyEvents);
-        setTotalItems(dummyEvents.length);
       } finally {
         setLoading(false);
       }
@@ -200,7 +198,7 @@ export default function EventPage() {
           <>
             <p className="text-xs my-6 text-neutral-500">{totalItems} events on result</p>
             <div className="grid gap-x-2 gap-y-6 grid-cols-1 m-sm:grid-cols-2">
-              {events?.map((data, index) => {
+              {dummyEvents.map((data, index) => {
                 return (
                   <Link key={index} to={`/ticket/${data?.id}`}>
                     <CardEvent screenSize="small" data={data} />
