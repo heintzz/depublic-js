@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { authServices } from "services/auth.services";
 import { tokenServices } from "services/token.services";
 import PropTypes from "prop-types";
+import { firebaseErrorMessage } from "utils/firebaseErrorMessage";
 
 const OAuth = ({ type }) => {
   const navigate = useNavigate();
@@ -21,8 +22,8 @@ const OAuth = ({ type }) => {
           navigate("/");
         }
       } catch (error) {
-        alert(error);
-        console.error(error);
+        const errorMessage = firebaseErrorMessage(error.message);
+        alert(errorMessage);
       }
     })();
   };

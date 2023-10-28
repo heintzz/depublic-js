@@ -11,6 +11,7 @@ import OAuthButton from "./OAuthButton";
 import Modal from "components/Modal/ModalBox";
 import Response from "components/Modal/Response";
 import "./Auth.css";
+import { firebaseErrorMessage } from "utils/firebaseErrorMessage";
 
 const defaultLoginForm = {
   email: "",
@@ -44,10 +45,10 @@ const Login = () => {
         setLoading(false);
         navigate("/");
       } catch (error) {
+        const errorMessage = firebaseErrorMessage(error.message);
         setLoading(false);
         setShowModalFailed(true);
-
-        setErrorMessages(error.message);
+        setErrorMessages(errorMessage);
       }
     })();
   };
@@ -61,11 +62,7 @@ const Login = () => {
       )}
       {showModalFailed && (
         <Modal>
-          <Response
-            show={setShowModalFailed}
-            message="Login failed"
-            instruction={errorMessages || "please try again later 🙏"}
-          />
+          <Response show={setShowModalFailed} message="Login failed" instruction={errorMessages} />
         </Modal>
       )}
       <div className="w-full bg-[#FEF6E5] px-7 py-5 font-bold relative z-[1]">Sign In</div>

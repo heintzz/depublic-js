@@ -10,6 +10,8 @@ import Loader from "components/Modal/Loader";
 import ModalBox from "components/Modal/ModalBox";
 import Response from "components/Modal/Response";
 import { authServices } from "services/auth.services";
+import { firebaseErrorMessage } from "utils/firebaseErrorMessage";
+
 import "./Auth.css";
 
 const defaultSignupForm = {
@@ -24,6 +26,7 @@ export default function Signup() {
   const [showModalFailed, setShowModalFailed] = useState(false);
   const [input, setInput] = useState(defaultSignupForm);
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessages, setErrorMessages] = useState();
 
   const handleInputChange = (e) => {
     setInput((prev) => {
@@ -42,9 +45,10 @@ export default function Signup() {
         setLoading(false);
         setShowModalSuccess(true);
       } catch (error) {
-        console.error(error);
+        const errorMessage = firebaseErrorMessage(error.message);
         setLoading(false);
         setShowModalFailed(true);
+        setErrorMessages(errorMessage);
       }
     })();
   };
@@ -70,7 +74,7 @@ export default function Signup() {
           <Response
             show={setShowModalFailed}
             message="Registration failed"
-            instruction="please try again later 🙏"
+            instruction={errorMessages}
           />
         </ModalBox>
       )}
