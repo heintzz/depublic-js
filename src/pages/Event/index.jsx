@@ -126,17 +126,6 @@ const dummyEvents = [
     is_available: true,
     event_date: "Sun Jan 14 2024 08:05:48 GMT+0700 (Western Indonesia Time)",
   },
-  {
-    id: 10,
-    title: "consectetur iste dignissimos",
-    location: "Surakarta",
-    description:
-      "Id consectetur hic possimus hic accusantium aut saepe. Quaerat quod voluptatibus laborum molestiae quia mollitia.",
-    image: "https://loremflickr.com/640/480/cats",
-    price: 629581,
-    is_available: false,
-    event_date: "Wed Feb 21 2024 22:51:21 GMT+0700 (Western Indonesia Time)",
-  },
 ];
 
 export default function EventPage() {
@@ -206,10 +195,10 @@ export default function EventPage() {
         </div>
         <hr className="mt-5" />
         {loading ? (
-          <p>Loading...</p>
+          <p className="mt-5">loading...</p>
         ) : (
           <>
-            <p className="text-xs my-6 text-neutral-500">{totalItems} events on result</p>
+            {/* <p className="text-xs my-6 text-neutral-500">{totalItems} events on result</p>
             <div className="grid gap-x-2 gap-y-6 grid-cols-1 m-sm:grid-cols-2">
               {events.map((data, index) => {
                 return (
@@ -218,7 +207,7 @@ export default function EventPage() {
                   </Link>
                 );
               })}
-            </div>
+            </div> */}
           </>
         )}
       </div>
