@@ -45,6 +45,7 @@ export default function EventPage() {
       } catch (error) {
         console.error(error);
         setEvents(dummyEvents);
+        setTotalItems(dummyEvents.length);
       } finally {
         setLoading(false);
       }
@@ -53,7 +54,7 @@ export default function EventPage() {
 
   return (
     <MainLayout>
-      <div className="pt-8 px-7">
+      <div className="pt-8 px-7 mb-10">
         <Breadcrumbs elements={paths} type="event" />
         <div className="flex flex-col m-sm:flex-row gap-y-2 items-center gap-x-2 my-8">
           <SearchBar additionalClassname="w-full" />
@@ -86,7 +87,7 @@ export default function EventPage() {
         ) : (
           <>
             <p className="text-xs my-6 text-neutral-500">{totalItems} events on result</p>
-            <div className="grid gap-x-2 gap-y-6 grid-cols-1 m-sm:grid-cols-2 mb-20">
+            <div className="grid gap-x-2 gap-y-6 grid-cols-1 m-sm:grid-cols-2">
               {events.map((data, index) => {
                 return (
                   <Link key={index} to={`/ticket/${data.id}`}>
