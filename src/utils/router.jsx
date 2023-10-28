@@ -1,10 +1,10 @@
 import DetailEventPage from "pages/DetailEvent";
+import EventPage from "pages/Event";
 import HomePage from "pages/Home";
 import { LoginPage } from "pages/Login";
 import { RegistrationPage } from "pages/Registration";
 import { RegistrationFormPage } from "pages/RegistrationForm";
 import { SignupPage } from "pages/Signup";
-import TicketPage from "pages/Ticket";
 import { Route, Routes } from "react-router-dom";
 import { tokenServices } from "services/token.services";
 
@@ -18,7 +18,7 @@ export default function RouterConfig() {
         loader={() => tokenServices.redirectToHome()}
       />
       <Route path="/login" element={<LoginPage />} loader={() => tokenServices.redirectToHome()} />
-      <Route path="/ticket" element={<TicketPage />} />
+      <Route path="/ticket" element={<EventPage />} />
       <Route path="/registration" element={<RegistrationPage />} />
       <Route path="/ticket/:id" element={<DetailEventPage />} />
       <Route path="/registration/:id" element={<RegistrationFormPage />} />

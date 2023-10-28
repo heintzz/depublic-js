@@ -24,6 +24,16 @@ export default {
         "success-50": "#EAF2E2",
         "success-900": "#0B640D",
       },
+      // change font size to em from default rem
+      fontSize: {
+        "2xs": ".625em",
+        xs: ".75em",
+        sm: ".875em",
+        base: "1em",
+        lg: "1.125em",
+        xl: "1.25em",
+        "2xl": "1.5em",
+      },
     },
   },
   plugins: [],

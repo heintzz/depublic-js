@@ -1,24 +1,23 @@
 import Breadcrumbs from "components/Breadcrumbs";
 import MainLayout from "components/MainLayout";
 import SearchBar from "components/SearchBar";
+import { useEffect, useMemo, useState } from "react";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { BsChevronDown } from "react-icons/bs";
 import { FiSliders } from "react-icons/fi";
 import { PiTag } from "react-icons/pi";
 import { SlLocationPin } from "react-icons/sl";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
+import CardEvent from "components/Carousel/CardEvent";
 import Footer from "components/Footer";
-import { useEffect, useMemo, useState } from "react";
-import { ISOToDateString } from "utils/helper";
 import { eventServices } from "services/event.services";
-import { NumberToCurrencyFormat } from "utils/helper";
 
-export default function TicketPage() {
-  const path = useLocation();
-  const paths = path.pathname.split("/");
-  paths.splice(0, 1);
+import dummyEvents from "assets/dummy/events.json";
+import usePaths from "../../hooks/usePaths";
 
+export default function EventPage() {
+  const paths = usePaths();
   const [events, setEvents] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -45,6 +44,7 @@ export default function TicketPage() {
         setEvents(res.data);
       } catch (error) {
         console.error(error);
+        setEvents(dummyEvents);
       } finally {
         setLoading(false);
       }
@@ -90,36 +90,7 @@ export default function TicketPage() {
               {events.map((data, index) => {
                 return (
                   <Link key={index} to={`/ticket/${data.id}`}>
-                    <div className="text-xs col-span-1 flex flex-col p-2 shadow-sm max-h-[330px] rounded-xl bg-white">
-                      <img
-                        className="h-[150px] m-sm:h-[100px] m-md:h-[120px] w-full bg-cover rounded-xl object-fill"
-                        src={data.image}
-                      />
-                      <div className="flex flex-col mt-3">
-                        <div className="text-xs flex items-center gap-x-2">
-                          <div className="flex gap-x-1 items-center">
-                            <SlLocationPin size="1.25em" /> {data.location}
-                          </div>
-                          |{" "}
-                          <span className="text-primary-500">
-                            {ISOToDateString(data.event_date)}
-                          </span>
-                        </div>
-                        <div className="flex flex-col gap-y-1 mt-2">
-                          <h1 className="font-bold text-base line-clamp-1">{data.title}</h1>
-                          <p className="text-xs line-clamp-1">{data.description}</p>
-                        </div>
-                        <div className="flex flex-wrap items-end my-4">
-                          <span className="font-bold text-primary-500 text-base">
-                            {NumberToCurrencyFormat(data.price)}
-                          </span>
-                          <span>/ 1 Person</span>
-                        </div>
-                        <span className="p-[6px] text-success-900 bg-success-50 rounded-xl text-center font-semibold">
-                          Tersedia
-                        </span>
-                      </div>
-                    </div>
+                    <CardEvent screenSize="small" data={data} />
                   </Link>
                 );
               })}
