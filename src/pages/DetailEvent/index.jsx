@@ -15,7 +15,17 @@ import { tokenServices } from "services/token.services";
 import { ISOToDateString } from "utils/helper";
 import usePaths from "../../hooks/usePaths";
 
-import dummyEvents from "assets/dummy/events.json";
+const dummyEvent = {
+  id: 0,
+  title: "facilis nemo fuga",
+  location: "Surakarta",
+  description:
+    "Debitis ipsa in labore laborum animi possimus. Corporis modi rem culpa error perspiciatis. Nemo ea officia quasi rerum nesciunt minus architecto. Expedita iure quidem vero debitis fuga facilis.",
+  image: "https://loremflickr.com/640/480/cats",
+  price: 1242817,
+  is_available: true,
+  event_date: "Tue Dec 05 2023 15:56:58 GMT+0700 (Western Indonesia Time)",
+};
 
 export default function DetailEventPage() {
   const paths = usePaths();
@@ -34,7 +44,7 @@ export default function DetailEventPage() {
         setEvent(res.data);
       } catch (error) {
         console.error(error);
-        setEvent(dummyEvents[id]);
+        setEvent(dummyEvent);
       } finally {
         setLoading(false);
       }
